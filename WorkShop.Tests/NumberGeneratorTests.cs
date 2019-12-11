@@ -4,7 +4,7 @@ using Workshop;
 namespace WorkShop.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class NumberGeneratorTests
     {
         [TestMethod]
         public void ShouldHaveDefaultValue0()
