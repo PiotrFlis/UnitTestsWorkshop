@@ -48,21 +48,58 @@ namespace WorkShop.Tests
         {
             //given
             NumberGenerator generator = new NumberGenerator();
-            int expectedNextValue = generator.GenerateNextNumber();
+            int expectedPreviousValue = generator.Number;
 
             //when
-            int lastValue = generator.Number;
+            generator.GenerateNextNumber();
+            int previousValue = generator.PreviousNumber;
 
             //then
-            Assert.AreEqual(expectedNextValue, lastValue);
+            Assert.AreEqual(expectedPreviousValue, previousValue);
         }
 
         [TestMethod]
-        [Ignore]
-        public void ShouldGetDefaultValueAsPreviousIfNothingGenerated()
+        public void ShouldGenerateCorrectNumber()
         {
+            //given
+            NumberGenerator generator = new NumberGenerator();
+            generator.Step = 23;
+
+            //when
+            int nextValue = generator.GenerateNextNumber();
+            
+            //then
+            Assert.AreEqual(NumberGenerator.DefaultValue + generator.Step, nextValue);
         }
 
+        [TestMethod]
+        public void ShouldNumberEqualToGenerated()
+        {
+            //given
+            NumberGenerator generator = new NumberGenerator();
+            int generatedValue = generator.GenerateNextNumber();
+
+            //when
+            int nextValue = generator.Number;
+
+            //then
+            Assert.AreEqual(generatedValue, nextValue);
+        }
+
+
+        [TestMethod]
+        public void ShouldGetDefaultValueAsPreviousIfNothingGenerated()
+        {
+            //given
+            NumberGenerator generator = new NumberGenerator();
+            int expectedPreviousValue = generator.Number;
+
+            //when
+            int previousValue = generator.PreviousNumber;
+
+            //then
+            Assert.AreEqual(expectedPreviousValue, previousValue);
+        }
     }
 }
 
