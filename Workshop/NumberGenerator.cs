@@ -19,10 +19,11 @@ namespace Workshop
 
         public int GenerateNextNumber()
         {
+            PreviousNumber = Number;
             Number += Step;
             return Number;
         }
 
-        public int PreviousNumber { get => Number - Step; }
+        public int PreviousNumber { get; private set; } = DefaultValue;
     }
 }
