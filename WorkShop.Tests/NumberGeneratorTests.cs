@@ -57,41 +57,6 @@ namespace WorkShop.Tests
             //then
             Assert.AreEqual(expectedPreviousValue, previousValue);
         }
-
-        [TestMethod]
-        public void ShouldGenerateCorrectNumber()
-        {
-            //given
-            NumberGenerator generator = new NumberGenerator();
-            generator.Step = 23;
-
-            //when
-            int nextValue = generator.GenerateNextNumber();
-            
-            //then
-            Assert.AreEqual(NumberGenerator.DefaultValue + generator.Step, nextValue);
-        }
-
-        [TestMethod]
-        public void ShouldNumberEqualToGenerated()
-        {
-            //given
-            NumberGenerator generator = new NumberGenerator();
-            int generatedValue = generator.GenerateNextNumber();
-
-            //when
-            int nextValue = generator.Number;
-
-            //then
-            Assert.AreEqual(generatedValue, nextValue);
-        }
-
-
-        [TestMethod]
-        [Ignore]
-        public void ShouldGetDefaultValueAsPreviousIfNothingGenerated()
-        {
-        }
     }
 }
 
