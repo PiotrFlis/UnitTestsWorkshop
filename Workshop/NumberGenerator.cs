@@ -8,9 +8,13 @@ namespace Workshop
         public const int DefaultStep = 10;
 
         public int Number { get; private set; }
-        
-        public NumberGenerator()
+
+        private readonly INextNumber nextNumberService;
+
+        public NumberGenerator(INextNumber nextNumber)
         {
+            this.nextNumberService = nextNumber;
+
             Number = DefaultValue;
             Step = DefaultStep;
         }
@@ -19,8 +23,10 @@ namespace Workshop
 
         public int GenerateNextNumber()
         {
+            int newNumber = nextNumberService.GetNextNumber(PreviousNumber);
             PreviousNumber = Number;
-            Number += Step;
+            Number = newNumber;
+
             return Number;
         }
 

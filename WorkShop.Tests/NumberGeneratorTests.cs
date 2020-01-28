@@ -6,10 +6,18 @@ namespace WorkShop.Tests
     [TestClass]
     public class NumberGeneratorTests
     {
+        INextNumber nextNumberService;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            nextNumberService = new NextNumberByStep();
+        }
+
         [TestMethod]
         public void ShouldHaveDefaultValue0()
         {
-            NumberGenerator generator = new NumberGenerator();
+            NumberGenerator generator = new NumberGenerator(nextNumberService);
 
             int expectedDefaultValue = NumberGenerator.DefaultValue;
             Assert.AreEqual(expectedDefaultValue, generator.Number);
@@ -19,7 +27,7 @@ namespace WorkShop.Tests
         public void ShouldGetLastNumber()
         {
             //given
-            NumberGenerator generator = new NumberGenerator();
+            NumberGenerator generator = new NumberGenerator(nextNumberService);
             int expectedNextValue = generator.GenerateNextNumber();
 
             //when
@@ -33,7 +41,7 @@ namespace WorkShop.Tests
         public void ShouldGetPreviousNumber()
         {
             //given
-            NumberGenerator generator = new NumberGenerator();
+            NumberGenerator generator = new NumberGenerator(nextNumberService);
             int expectedPreviousValue = generator.Number;
 
             //when
@@ -48,7 +56,7 @@ namespace WorkShop.Tests
         public void ShouldNumberEqualToGenerated()
         {
             //given
-            NumberGenerator generator = new NumberGenerator();
+            NumberGenerator generator = new NumberGenerator(nextNumberService);
             int generatedValue = generator.GenerateNextNumber();
 
             //when
@@ -63,7 +71,7 @@ namespace WorkShop.Tests
         public void ShouldGetDefaultValueAsPreviousIfNothingGenerated()
         {
             //given
-            NumberGenerator generator = new NumberGenerator();
+            NumberGenerator generator = new NumberGenerator(nextNumberService);
             int expectedPreviousValue = generator.Number;
 
             //when
