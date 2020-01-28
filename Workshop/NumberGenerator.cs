@@ -18,18 +18,33 @@ namespace Workshop
             Number = DefaultValue;
             Step = DefaultStep;
         }
-        
+
         public int Step;
 
         public int GenerateNextNumber()
         {
-            int newNumber = nextNumberService.GetNextNumber(PreviousNumber);
+            int newNumber = nextNumberService.GetNextNumber(previousNumber ?? NumberGenerator.DefaultValue);
             PreviousNumber = Number;
             Number = newNumber;
 
             return Number;
         }
 
-        public int PreviousNumber { get; private set; } = DefaultValue;
+        private int? previousNumber = null;
+
+        public int PreviousNumber
+        {
+            get
+            {
+                if (previousNumber == null)
+                {
+                    throw new InvalidOperationException("No number generated yet");
+                }
+
+                return (int)previousNumber;
+            }
+
+            private set { previousNumber = value; }
+        }
     }
 }

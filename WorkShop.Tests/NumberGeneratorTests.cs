@@ -55,6 +55,7 @@ namespace WorkShop.Tests
 
 
         [TestMethod]
+        [Ignore("This test is no longer valid for the class")]
         public void ShouldGetDefaultValueAsPreviousIfNothingGenerated()
         {
             //given
@@ -71,7 +72,13 @@ namespace WorkShop.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void ShouldThrowExceptionWhenGetPreviousAndNothingGenerated()
         {
-            Assert.Fail();
+            //given
+            NumberGenerator generator = new NumberGenerator(nextNumberService);
+
+            //when
+            int previousValue = generator.PreviousNumber;
+
+            Assert.Fail("No exception thrown");
         }
     }
 }
