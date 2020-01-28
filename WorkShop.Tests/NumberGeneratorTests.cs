@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using Workshop;
 
@@ -8,11 +9,15 @@ namespace WorkShop.Tests
     public class NumberGeneratorTests
     {
         INextNumber nextNumberService;
+        Mock<INextNumber> StepOperationMock { get; set; }
+
+
 
         [TestInitialize]
         public void TestInitialize()
         {
-            nextNumberService = new NextNumberByStep();
+            StepOperationMock = new Mock<INextNumber>();
+            nextNumberService = StepOperationMock.Object;
         }
 
         [TestMethod]
@@ -79,6 +84,76 @@ namespace WorkShop.Tests
             int previousValue = generator.PreviousNumber;
 
             Assert.Fail("No exception thrown");
+        }
+
+        [TestMethod]
+        public void ShouldUseServiceToGenerateNumber()
+        {
+            NumberGenerator generator = new NumberGenerator(nextNumberService);
+
+            generator.GenerateNextNumber();
+
+            StepOperationMock.Verify(op => op.GetNextNumber(NumberGenerator.DefaultValue), Times.Once);
+        }
+
+        [TestMethod]
+        public void ShouldGenerateNumber()
+        {
+            NumberGenerator generator = new NumberGenerator(nextNumberService);
+            int expectedNumber = 432;
+            StepOperationMock.Setup(op => op.GetNextNumber(It.IsAny<int>())).Returns(expectedNumber);
+
+            int generatedNumber = generator.GenerateNextNumber();
+
+            Assert.AreEqual(expectedNumber, generatedNumber);
+        }
+
+        [TestMethod]
+        public void ShouldGenerateNumberUsingPrevious()
+        {
+            NumberGenerator generator = new NumberGenerator(nextNumberService);
+            int firstNumber = 432;
+            int secondNumber = 345;
+
+            StepOperationMock.Setup(op => op.GetNextNumber(NumberGenerator.DefaultValue)).Returns(firstNumber);
+            StepOperationMock.Setup(op => op.GetNextNumber(firstNumber)).Returns(secondNumber);
+
+            generator.GenerateNextNumber();
+            int generatedNumber = generator.GenerateNextNumber();
+
+            StepOperationMock.Verify(op => op.GetNextNumber(NumberGenerator.DefaultValue), Times.Once);
+            StepOperationMock.Verify(op => op.GetNextNumber(firstNumber), Times.Once);
+            Assert.AreEqual(secondNumber, generatedNumber);
+        }
+
+        [TestMethod]
+        public void ShouldGenerateNumberUsingDefault()
+        {
+            NumberGenerator generator = new NumberGenerator(nextNumberService);
+            StepOperationMock.Setup(op => op.GetNextNumber(NumberGenerator.DefaultValue));
+
+            generator.GenerateNextNumber();
+
+            StepOperationMock.Verify(op => op.GetNextNumber(NumberGenerator.DefaultValue), Times.Once);
+        }
+
+        [TestMethod]
+        public void ShouldGenerateNumberProperNUmberOfTimes()
+        {
+            NumberGenerator generator = new NumberGenerator(nextNumberService);
+            int numberCount = 0;
+            int generatorCalls = 234;
+            StepOperationMock.Setup(op => op.GetNextNumber(It.IsAny<int>()))
+                .Callback(() => numberCount++ );
+
+            for (int i = 0; i < generatorCalls; i++)
+            {
+                generator.GenerateNextNumber();
+            }
+
+            Assert.AreEqual(generatorCalls, numberCount);
+
+            StepOperationMock.Verify(op => op.GetNextNumber(NumberGenerator.DefaultValue), Times.Exactly(numberCount));
         }
     }
 }
