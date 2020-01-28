@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using Workshop;
 
 namespace WorkShop.Tests
@@ -64,6 +65,13 @@ namespace WorkShop.Tests
 
             //then
             Assert.AreEqual(NumberGenerator.DefaultValue, previousValue);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ShouldThrowExceptionWhenGetPreviousAndNothingGenerated()
+        {
+            Assert.Fail();
         }
     }
 }
