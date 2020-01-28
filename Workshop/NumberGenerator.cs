@@ -5,8 +5,7 @@ namespace Workshop
     public class NumberGenerator
     {
         public const int DefaultValue = 0;
-        public const int DefaultStep = 10;
-
+        
         public int Number { get; private set; }
 
         private readonly INextNumber nextNumberService;
@@ -16,16 +15,12 @@ namespace Workshop
             this.nextNumberService = nextNumber;
 
             Number = DefaultValue;
-            Step = DefaultStep;
         }
-
-        public int Step;
 
         public int GenerateNextNumber()
         {
-            int newNumber = nextNumberService.GetNextNumber(previousNumber ?? NumberGenerator.DefaultValue);
-            PreviousNumber = Number;
-            Number = newNumber;
+            previousNumber = Number;
+            Number = nextNumberService.GetNextNumber(Number);
 
             return Number;
         }
