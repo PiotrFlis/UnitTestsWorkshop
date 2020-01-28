@@ -24,20 +24,6 @@ namespace WorkShop.Tests
         }
 
         [TestMethod]
-        public void ShouldGetLastNumber()
-        {
-            //given
-            NumberGenerator generator = new NumberGenerator(nextNumberService);
-            int expectedNextValue = generator.GenerateNextNumber();
-
-            //when
-            int lastValue = generator.Number;
-
-            //then
-            Assert.AreEqual(expectedNextValue, lastValue);
-        }
-
-        [TestMethod]
         public void ShouldGetPreviousNumber()
         {
             //given
@@ -72,13 +58,12 @@ namespace WorkShop.Tests
         {
             //given
             NumberGenerator generator = new NumberGenerator(nextNumberService);
-            int expectedPreviousValue = generator.Number;
 
             //when
             int previousValue = generator.PreviousNumber;
 
             //then
-            Assert.AreEqual(expectedPreviousValue, previousValue);
+            Assert.AreEqual(NumberGenerator.DefaultValue, previousValue);
         }
     }
 }
