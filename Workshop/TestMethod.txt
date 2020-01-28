@@ -1,0 +1,10 @@
+﻿//Code snippet to be used in the exercise
+
+        [TestMethod]
+        public void ShouldHaveDefaultValue0()
+        {
+            NumberGenerator generator = new NumberGenerator();
+
+            int expectedDefaultValue = NumberGenerator.DefaultValue;
+            Assert.AreEqual(expectedDefaultValue, generator.Number);
+        }
