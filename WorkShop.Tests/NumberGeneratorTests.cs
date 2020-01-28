@@ -16,20 +16,6 @@ namespace WorkShop.Tests
         }
 
         [TestMethod]
-        public void ShouldUseDefaultStep()
-        {
-            //given
-            NumberGenerator generator = new NumberGenerator();
-
-            //when
-            int nextNumber = generator.GenerateNextNumber();
-
-            //then
-            int expectedNextValue = NumberGenerator.DefaultValue + NumberGenerator.DefaultStep;
-            Assert.AreEqual(expectedNextValue, nextNumber);
-        }
-
-        [TestMethod]
         public void ShouldGetLastNumber()
         {
             //given
@@ -56,20 +42,6 @@ namespace WorkShop.Tests
 
             //then
             Assert.AreEqual(expectedPreviousValue, previousValue);
-        }
-
-        [TestMethod]
-        public void ShouldGenerateCorrectNumber()
-        {
-            //given
-            NumberGenerator generator = new NumberGenerator();
-            generator.Step = 23;
-
-            //when
-            int nextValue = generator.GenerateNextNumber();
-            
-            //then
-            Assert.AreEqual(NumberGenerator.DefaultValue + generator.Step, nextValue);
         }
 
         [TestMethod]

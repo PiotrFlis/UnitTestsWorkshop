@@ -8,7 +8,7 @@ namespace Workshop
         public const int DefaultStep = 10;
 
         public int Number { get; private set; }
-
+        
         public NumberGenerator()
         {
             Number = DefaultValue;
