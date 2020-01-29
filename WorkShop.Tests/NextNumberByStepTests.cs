@@ -9,6 +9,13 @@ namespace WorkShop.Tests
     [TestClass]
     public class NextNumberByStepTests
     {
+        private TestContext testContextInstance;
+        public TestContext TestContext
+        {
+            get { return testContextInstance; }
+            set { testContextInstance = value; }
+        }
+
         [TestMethod]
         public void ShouldUseDefaultStep()
         {
@@ -37,6 +44,19 @@ namespace WorkShop.Tests
 
             //then
             Assert.AreEqual(previousNumber + next.Step, nextNumber);
+        }
+
+        [TestMethod]
+        [DataRow(1, 2, 3, DisplayName = "add")]
+        [DataRow(0, -3, -3, DisplayName = "subtract")]
+        public void ShouldAddNumbers(int step, int previous, int expected)
+        {
+            NextNumberByStep next = new NextNumberByStep();
+            next.Step = step;
+
+            int newNumber = next.GetNextNumber(previous);
+
+            Assert.AreEqual(expected, step + previous);
         }
     }
 }
