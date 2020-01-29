@@ -20,7 +20,7 @@ namespace WorkShop.Tests
             int nextNumber = next.GetNextNumber(previousNumber);
 
             //then
-            int expectedNextValue = previousNumber + NumberGenerator.DefaultStep;
+            int expectedNextValue = previousNumber +NextNumberByStep.DefaultStep;
             Assert.AreEqual(expectedNextValue, nextNumber);
         }
 
