@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Numbers>
+  <Test>
+    <case>add</case>
+    <step>2</step>
+    <previous>3</previous>
+    <expected>5</expected>
+  </Test>
+  <Test>
+    <case>subtract</case>
+    <step>10</step>
+    <previous>-2</previous>
+    <expected>8</expected>
+  </Test>
+</Numbers>

@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.352
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workshop", "Workshop\Workshop.csproj", "{A02A9EF1-72A5-4A2D-B84D-9A3B88E81258}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workshop", "Workshop\Workshop.csproj", "{A02A9EF1-72A5-4A2D-B84D-9A3B88E81258}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkShop.Tests", "WorkShop.Tests\WorkShop.Tests.csproj", "{9600DC5A-80F9-4448-9BBE-A6E8EC3469AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkShop.Tests", "WorkShop.Tests\WorkShop.Tests.csproj", "{9600DC5A-80F9-4448-9BBE-A6E8EC3469AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkshopStandard", "WorkshopStandard\WorkshopStandard.csproj", "{66550D08-7D44-454F-AC10-8BE6C3A48033}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkshopStandard.Test", "WorkshopStandard.Test\WorkshopStandard.Test.csproj", "{A74F84FF-58BB-489C-ACEC-85B314FE4470}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{9600DC5A-80F9-4448-9BBE-A6E8EC3469AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9600DC5A-80F9-4448-9BBE-A6E8EC3469AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9600DC5A-80F9-4448-9BBE-A6E8EC3469AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66550D08-7D44-454F-AC10-8BE6C3A48033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66550D08-7D44-454F-AC10-8BE6C3A48033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66550D08-7D44-454F-AC10-8BE6C3A48033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66550D08-7D44-454F-AC10-8BE6C3A48033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A74F84FF-58BB-489C-ACEC-85B314FE4470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A74F84FF-58BB-489C-ACEC-85B314FE4470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A74F84FF-58BB-489C-ACEC-85B314FE4470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A74F84FF-58BB-489C-ACEC-85B314FE4470}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
